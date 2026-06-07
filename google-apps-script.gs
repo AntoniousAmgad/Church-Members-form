@@ -8,7 +8,7 @@
 */
 
 // Set this to your target Google Sheet ID (from the sheet URL). If left empty, script will use the active spreadsheet when bound.
-var SHEET_ID = 'https://docs.google.com/spreadsheets/d/1PE2QkUEvdti8JwWrp55kkAxRZuLT3p_xDmIDLf6mwck/edit?usp=sharing';
+var SHEET_ID = '1PE2QkUEvdti8JwWrp55kkAxRZuLT3p_xDmIDLf6mwck';
 
 function doPost(e){
   try{
