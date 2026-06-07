@@ -14,12 +14,22 @@ export default async function handler(req, res) {
     const path = req.url.replace(/^\/api/, '');
     const targetUrl = target + path;
 
+    // Get the body as raw data
+    let body;
+    if (req.method === 'GET' || req.method === 'HEAD') {
+      body = undefined;
+    } else if (typeof req.body === 'string') {
+      body = req.body;
+    } else if (req.body) {
+      body = JSON.stringify(req.body);
+    }
+
     const fetchOptions = {
       method: req.method,
       headers: {
-        'Content-Type': req.headers['content-type'] || 'application/json'
+        'Content-Type': req.headers['content-type'] || 'application/x-www-form-urlencoded'
       },
-      body: req.method === 'GET' || req.method === 'HEAD' ? undefined : req.body ? JSON.stringify(req.body) : undefined
+      body: body
     };
 
     const r = await fetch(targetUrl, fetchOptions);
