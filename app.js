@@ -1,6 +1,6 @@
 // Simple church member form handler
 // IMPORTANT: set `GAS_URL` to your deployed Google Apps Script Web App URL
-const GAS_URL = 'https://church-members-form.vercel.app/api/macros/s/AKfycbxAz0rebaMsMLhQyuexKd4QnJjdgJoUJgO525SmfYavQC2QcSL28ZOicQoc0AYyvOQNDA/exec';
+const GAS_URL = 'https://church-members-form.vercel.app/api/proxy?url=https://script.google.com/macros/s/AKfycbxAz0rebaMsMLhQyuexKd4QnJjdgJoUJgO525SmfYavQC2QcSL28ZOicQoc0AYyvOQNDA/exec';
 
 const form = document.getElementById('memberForm');
 const loading = document.getElementById('loading');
