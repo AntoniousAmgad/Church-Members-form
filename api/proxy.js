@@ -10,8 +10,8 @@ export default async function handler(req, res) {
 
   const target = 'https://script.google.com';
   try {
-    // Forward path and query
-    const path = req.url.replace(/^\/api/, '');
+    // Forward only the path after /api/proxy
+    const path = req.url.replace(/^\/api\/proxy/, '');
     const targetUrl = target + path;
 
     // Get the body as raw data
