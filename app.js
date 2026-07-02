@@ -23,7 +23,7 @@ function showMessage(text, type='success'){
   message.className = 'message ' + (type === 'success' ? 'success' : 'error');
 }
 
-form.addEventListener('submit', async (e) =>{
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   showMessage('');
 
@@ -38,64 +38,57 @@ form.addEventListener('submit', async (e) =>{
     lastName = sanitize((form.lastName && form.lastName.value) || '');
   }
 
-  let birthday = '';
-  const day = form['dob-day'] ? sanitize(form['dob-day'].value) : '';
+  const day   = form['dob-day']   ? sanitize(form['dob-day'].value)   : '';
   const month = form['dob-month'] ? sanitize(form['dob-month'].value) : '';
-  const year = form['dob-year'] ? sanitize(form['dob-year'].value) : '';
+  const year  = form['dob-year']  ? sanitize(form['dob-year'].value)  : '';
+  let birthday = '';
   if(day || month || year){
-    const dd = day.padStart(2,'0');
-    const mm = month.padStart(2,'0');
+    const dd = day.padStart(2, '0');
+    const mm = month.padStart(2, '0');
     birthday = year.length === 4 ? `${year}-${mm}-${dd}` : `${dd}/${mm}/${year}`;
-  } else if(form.birthday){
-    birthday = sanitize(form.birthday.value);
+  }
+
+  const skills = Array.from(form.querySelectorAll('input[name="skill"]:checked')).map(i => sanitize(i.value));
+  const otherSkill = form.querySelector('input[name="skillOther"]') ? sanitize(form.querySelector('input[name="skillOther"]').value) : '';
+  if(otherSkill) skills.push(otherSkill);
+
+  const aDay   = form.agreeDay   ? sanitize(form.agreeDay.value)   : '';
+  const aMonth = form.agreeMonth ? sanitize(form.agreeMonth.value) : '';
+  const aYear  = form.agreeYear  ? sanitize(form.agreeYear.value)  : '';
+  let agreeDate = '';
+  if(aDay || aMonth || aYear){
+    const dd = aDay.padStart(2, '0');
+    const mm = aMonth.padStart(2, '0');
+    agreeDate = aYear.length === 4 ? `${aYear}-${mm}-${dd}` : `${dd}/${mm}/${aYear}`;
   }
 
   const data = {
     firstName,
     lastName,
-    phone: sanitize(form.phone ? form.phone.value : ''),
-    email: sanitize(form.email ? form.email.value : ''),
-    address: sanitize(form.address ? form.address.value : ''),
+    phone:    sanitize(form.phone   ? form.phone.value   : ''),
+    email:    sanitize(form.email   ? form.email.value   : ''),
+    address:  sanitize(form.address ? form.address.value : ''),
     birthday,
-    notes: sanitize(form.notes ? form.notes.value : ''),
+    notes:    sanitize(form.notes   ? form.notes.value   : ''),
     scout: {
-      isMember: (function(){
-        const r = form.querySelector('input[name="isScout"]:checked');
-        return r ? (r.value === 'yes') : null;
-      })(),
-      ranks: Array.from(form.querySelectorAll('input[name="rank"]:checked')).map(i=>sanitize(i.value)),
-      years: sanitize(form.scoutYears ? form.scoutYears.value : ''),
+      isMember:   (function(){ const r = form.querySelector('input[name="isScout"]:checked'); return r ? (r.value === 'yes') : null; })(),
+      ranks:      Array.from(form.querySelectorAll('input[name="rank"]:checked')).map(i => sanitize(i.value)),
+      years:      sanitize(form.scoutYears      ? form.scoutYears.value      : ''),
       activities: sanitize(form.scoutActivities ? form.scoutActivities.value : '')
     },
-    skills: (function(){
-      const s = Array.from(form.querySelectorAll('input[name="skill"]:checked')).map(i=>sanitize(i.value));
-      const other = form.querySelector('input[name="skillOther"]') ? sanitize(form.querySelector('input[name="skillOther"]').value) : '';
-      if(other) s.push(other);
-      return s;
-    })(),
+    skills,
     hobbies: sanitize(form.hobbies ? form.hobbies.value : ''),
     questions: {
-      whyJoin: sanitize(form.q1 ? form.q1.value : ''),
+      whyJoin:    sanitize(form.q1 ? form.q1.value : ''),
       contribute: sanitize(form.q2 ? form.q2.value : ''),
-      canCommit: (function(){ const r = form.querySelector('input[name="commit"]:checked'); return r ? r.value : ''; })(),
-      otherInfo: sanitize(form.q4 ? form.q4.value : '')
+      canCommit:  (function(){ const r = form.querySelector('input[name="commit"]:checked'); return r ? r.value : ''; })(),
+      otherInfo:  sanitize(form.q4 ? form.q4.value : '')
     },
-    agreement: (function(){
-      const aDay = form.agreeDay ? sanitize(form.agreeDay.value) : '';
-      const aMonth = form.agreeMonth ? sanitize(form.agreeMonth.value) : '';
-      const aYear = form.agreeYear ? sanitize(form.agreeYear.value) : '';
-      let agreeDate = '';
-      if(aDay || aMonth || aYear){
-        const dd = aDay.padStart(2,'0');
-        const mm = aMonth.padStart(2,'0');
-        agreeDate = aYear.length === 4 ? `${aYear}-${mm}-${dd}` : `${dd}/${mm}/${aYear}`;
-      }
-      return {
-        name: sanitize(form.agreeName ? form.agreeName.value : ''),
-        signature: sanitize(form.agreeSignature ? form.agreeSignature.value : ''),
-        date: agreeDate
-      };
-    })()
+    agreement: {
+      name:      sanitize(form.agreeName      ? form.agreeName.value      : ''),
+      signature: sanitize(form.agreeSignature ? form.agreeSignature.value : ''),
+      date:      agreeDate
+    }
   };
 
   if(!data.firstName || !data.lastName){
@@ -114,7 +107,7 @@ form.addEventListener('submit', async (e) =>{
   try{
     const resp = await fetch(GAS_URL, {
       method: 'POST',
-      headers: {'Content-Type':'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
 
@@ -129,10 +122,10 @@ form.addEventListener('submit', async (e) =>{
     } else {
       throw new Error(result && result.message ? result.message : 'Unknown error from server');
     }
-  }catch(err){
+  } catch(err){
     console.error(err);
     showMessage('Unable to save member. Please try again later.', 'error');
-  }finally{
+  } finally{
     submitBtn.disabled = false;
     showLoading(false);
   }
