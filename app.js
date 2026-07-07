@@ -91,11 +91,63 @@ form.addEventListener('submit', async (e) => {
   };
 
   if(!data.firstName || !data.lastName){
-    showMessage('Please enter full name (first and last).', 'error');
+    showMessage('Please enter your full name (first and last).', 'error');
     return;
   }
-  if(!validateEmail(data.email)){
+  if(!data.birthday){
+    showMessage('Please enter your date of birth.', 'error');
+    return;
+  }
+  if(!data.address){
+    showMessage('Please enter your address.', 'error');
+    return;
+  }
+  if(!data.phone){
+    showMessage('Please enter your phone number.', 'error');
+    return;
+  }
+  if(!data.email || !validateEmail(data.email)){
     showMessage('Please enter a valid email address.', 'error');
+    return;
+  }
+  if(data.scout.isMember === null){
+    showMessage('Please indicate whether you are currently a scout member.', 'error');
+    return;
+  }
+  if(!data.scout.years && data.scout.years !== 0){
+    showMessage('Please enter your years of scouting experience.', 'error');
+    return;
+  }
+  if(!data.scout.activities){
+    showMessage('Please enter the main activities you have participated in.', 'error');
+    return;
+  }
+  if(!data.hobbies){
+    showMessage('Please enter your skills and/or hobbies.', 'error');
+    return;
+  }
+  if(!data.questions.whyJoin){
+    showMessage('Please answer why you want to join the Rover Team.', 'error');
+    return;
+  }
+  if(!data.questions.contribute){
+    showMessage('Please answer what you can contribute to the team.', 'error');
+    return;
+  }
+  if(!data.questions.canCommit){
+    showMessage('Please answer whether you can commit to meetings and activities.', 'error');
+    return;
+  }
+  if(!data.agreement.name){
+    showMessage('Please enter your name in the agreement section.', 'error');
+    return;
+  }
+  if(!data.agreement.signature){
+    showMessage('Please enter your signature in the agreement section.', 'error');
+    return;
+  }
+  if(!data.agreement.date){
+    showMessage('Please enter the date in the agreement section.', 'error');
     return;
   }
 
