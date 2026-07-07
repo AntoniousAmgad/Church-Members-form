@@ -48,9 +48,9 @@ form.addEventListener('submit', async (e) => {
     birthday = year.length === 4 ? `${year}-${mm}-${dd}` : `${dd}/${mm}/${year}`;
   }
 
-  const skills = Array.from(form.querySelectorAll('input[name="skill"]:checked')).map(i => sanitize(i.value));
+  const checkedSkills = Array.from(form.querySelectorAll('input[name="skill"]:checked')).map(i => sanitize(i.value));
   const otherSkill = form.querySelector('input[name="skillOther"]') ? sanitize(form.querySelector('input[name="skillOther"]').value) : '';
-  if(otherSkill) skills.push(otherSkill);
+  if(otherSkill) checkedSkills.push(otherSkill);
 
   const aDay   = form.agreeDay   ? sanitize(form.agreeDay.value)   : '';
   const aMonth = form.agreeMonth ? sanitize(form.agreeMonth.value) : '';
@@ -76,8 +76,7 @@ form.addEventListener('submit', async (e) => {
       years:      sanitize(form.scoutYears      ? form.scoutYears.value      : ''),
       activities: sanitize(form.scoutActivities ? form.scoutActivities.value : '')
     },
-    skills,
-    hobbies: sanitize(form.hobbies ? form.hobbies.value : ''),
+    hobbies: [...checkedSkills, sanitize(form.hobbies ? form.hobbies.value : '')].filter(Boolean).join(', '),
     questions: {
       whyJoin:    sanitize(form.q1 ? form.q1.value : ''),
       contribute: sanitize(form.q2 ? form.q2.value : ''),
