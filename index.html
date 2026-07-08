@@ -65,9 +65,24 @@
         width: 100%;
         padding: 14px 24px;
       }
-      [dir="rtl"] .questions .checkbox-row {
+      [dir="rtl"] .questions .checkbox-row,
+      [dir="rtl"] .scout .checkbox-row {
         flex-direction: column;
         align-items: flex-end;
+      }
+      [dir="rtl"] .scout .checkbox-row .q,
+      [dir="rtl"] .ranks .q {
+        min-width: 0;
+        width: 100%;
+        text-align: right;
+      }
+      [dir="rtl"] .ranks {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      [dir="rtl"] .scout .info-row input,
+      [dir="rtl"] .scout .info-row textarea {
+        text-align: right;
       }
     }
   </style>
