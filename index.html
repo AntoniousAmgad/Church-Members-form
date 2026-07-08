@@ -1,12 +1,35 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Church Member Registration</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    #langToggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 999;
+      background: #1d4ed8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    [dir="rtl"] #langToggle {
+      right: auto;
+      left: 16px;
+    }
+  </style>
 </head>
 <body>
+  <button id="langToggle">عربي</button>
+
   <main class="container">
     <div class="top-image-wrap">
       <img src="assets/Screenshot 2026-06-06 133828.png" alt="Rover Team header image" class="top-page-image">
@@ -14,8 +37,8 @@
     <header class="top-banner">
       <div class="banner-wrap upside-down">
         <div class="banner-inner upside-down">
-          <div class="banner-title">Rover Team</div>
-          <div class="banner-sub">Enrollment Form</div>
+          <div class="banner-title" data-key="bannerTitle">Rover Team</div>
+          <div class="banner-sub" data-key="bannerSub">Enrollment Form</div>
         </div>
       </div>
     </header>
@@ -23,7 +46,7 @@
     <div class="tagline" role="note" aria-label="Tagline">
       <span class="line" aria-hidden="true"></span>
       <span class="star" aria-hidden="true">★</span>
-      <span class="tagline-text">Be Prepared .. To Serve God, Church &amp; Country</span>
+      <span class="tagline-text" data-key="tagline">Be Prepared .. To Serve God, Church &amp; Country</span>
       <span class="star" aria-hidden="true">★</span>
       <span class="line" aria-hidden="true"></span>
     </div>
@@ -35,7 +58,7 @@
         <div class="form-section personal card-section">
           <div class="section-header personal-header">
             <span class="section-number">1</span>
-            <div class="section-title">Personal Information</div>
+            <div class="section-title" data-key="section1">Personal Information</div>
             <div class="person-icon" aria-hidden="true">
               <img src="Personal Information.png" alt="personal icon" class="header-icon personal-flower">
             </div>
@@ -43,12 +66,12 @@
 
           <div class="personal-fields">
             <div class="info-row">
-              <label for="fullName">Full Name:</label>
-              <input id="fullName" name="fullName" type="text" placeholder="Full Name" required>
+              <label for="fullName" data-key="fullName">Full Name:</label>
+              <input id="fullName" name="fullName" type="text" placeholder="Full Name" data-placeholder-key="fullNamePh" required>
             </div>
 
             <div class="info-row dob-row">
-              <label>Date of Birth:</label>
+              <label data-key="dob">Date of Birth:</label>
               <div class="dob-inputs">
                 <input name="dob-day" maxlength="2" placeholder="DD" class="dob small" required>
                 <span class="sep">/</span>
@@ -59,26 +82,26 @@
             </div>
 
             <div class="info-row">
-              <label for="address">Address:</label>
-              <input id="address" name="address" type="text" placeholder="" required>
+              <label for="address" data-key="address">Address:</label>
+              <input id="address" name="address" type="text" required>
             </div>
 
             <div class="info-row">
-              <label for="phone">Phone Number:</label>
+              <label for="phone" data-key="phone">Phone Number:</label>
               <input id="phone" name="phone" type="tel" inputmode="tel" required>
             </div>
 
             <div class="info-row">
-              <label for="email">Email:</label>
+              <label for="email" data-key="email">Email:</label>
               <input id="email" name="email" type="email" required>
             </div>
           </div>
         </div>
-        
+
         <div class="form-section scout card-section">
           <div class="section-header personal-header">
             <span class="section-number">2</span>
-            <div class="section-title">Scout Information</div>
+            <div class="section-title" data-key="section2">Scout Information</div>
             <div class="person-icon" aria-hidden="true">
               <img src="assets/ChatGPT%20Image%20Jun%206%2C%202026%2C%2001_27_23%20PM.png" alt="scout flower" class="header-icon scout-flower">
             </div>
@@ -86,56 +109,55 @@
 
           <div class="scout-fields">
             <div class="checkbox-row">
-              <div class="q">Are you currently a scout member?</div>
-              <label><input type="radio" name="isScout" value="yes" required> Yes</label>
-              <label><input type="radio" name="isScout" value="no"> No</label>
+              <div class="q" data-key="isScoutQ">Are you currently a scout member?</div>
+              <label><input type="radio" name="isScout" value="yes" required> <span data-key="yes">Yes</span></label>
+              <label><input type="radio" name="isScout" value="no"> <span data-key="no">No</span></label>
             </div>
 
             <div class="checkbox-row ranks">
-              <div class="q">Scout Rank (if any):</div>
-              <label><input type="checkbox" name="rank" value="Novice"> Novice</label>
-              <label><input type="checkbox" name="rank" value="Scout"> Scout</label>
-              <label><input type="checkbox" name="rank" value="Tenderfoot"> Tenderfoot</label>
-              <label><input type="checkbox" name="rank" value="Rover"> Rover</label>
+              <div class="q" data-key="rankQ">Scout Rank (if any):</div>
+              <label><input type="checkbox" name="rank" value="Novice"> <span data-key="novice">Novice</span></label>
+              <label><input type="checkbox" name="rank" value="Scout"> <span data-key="scoutRank">Scout</span></label>
+              <label><input type="checkbox" name="rank" value="Tenderfoot"> <span data-key="tenderfoot">Tenderfoot</span></label>
+              <label><input type="checkbox" name="rank" value="Rover"> <span data-key="rover">Rover</span></label>
             </div>
 
             <div class="info-row">
-              <label>Years of Scouting Experience:</label>
-              <input id="scoutYears" name="scoutYears" type="number" min="0" class="small-input" required> years
+              <label data-key="scoutYears">Years of Scouting Experience:</label>
+              <input id="scoutYears" name="scoutYears" type="number" min="0" class="small-input" required> <span data-key="years">years</span>
             </div>
 
             <div class="info-row">
-              <label>Main Activities you have participated in:</label>
+              <label data-key="scoutActivities">Main Activities you have participated in:</label>
               <textarea id="scoutActivities" name="scoutActivities" rows="3" required></textarea>
             </div>
           </div>
         </div>
-
 
     <!-- Skills & Hobbies -->
     <section class="card form-card">
       <div class="form-section skills">
           <div class="section-header personal-header">
             <span class="section-number">3</span>
-            <div class="section-title">Skills & Hobbies</div>
+            <div class="section-title" data-key="section3">Skills &amp; Hobbies</div>
             <div class="person-icon" aria-hidden="true"><img src="Skills & Hobbies.png" alt="fleur" class="header-icon"></div>
           </div>
 
         <div class="skills-fields">
           <div class="skills-grid">
-            <label><input type="checkbox" name="skill" value="Leadership"> Leadership</label>
-            <label><input type="checkbox" name="skill" value="First Aid"> First Aid</label>
-            <label><input type="checkbox" name="skill" value="Camping"> Camping</label>
-            <label><input type="checkbox" name="skill" value="Cooking"> Cooking</label>
-            <label><input type="checkbox" name="skill" value="Map Reading"> Map Reading</label>
-            <label><input type="checkbox" name="skill" value="Handicrafts"> Handicrafts</label>
-            <label><input type="checkbox" name="skill" value="Photography"> Photography</label>
-            <label class="other-skill"><input type="checkbox" name="skill" value="Other"> Other: <input type="text" name="skillOther" class="inline-input" placeholder=""></label>
+            <label><input type="checkbox" name="skill" value="Leadership"> <span data-key="leadership">Leadership</span></label>
+            <label><input type="checkbox" name="skill" value="First Aid"> <span data-key="firstAid">First Aid</span></label>
+            <label><input type="checkbox" name="skill" value="Camping"> <span data-key="camping">Camping</span></label>
+            <label><input type="checkbox" name="skill" value="Cooking"> <span data-key="cooking">Cooking</span></label>
+            <label><input type="checkbox" name="skill" value="Map Reading"> <span data-key="mapReading">Map Reading</span></label>
+            <label><input type="checkbox" name="skill" value="Handicrafts"> <span data-key="handicrafts">Handicrafts</span></label>
+            <label><input type="checkbox" name="skill" value="Photography"> <span data-key="photography">Photography</span></label>
+            <label class="other-skill"><input type="checkbox" name="skill" value="Other"> <span data-key="other">Other:</span> <input type="text" name="skillOther" class="inline-input"></label>
           </div>
 
           <div class="info-row">
-            <label for="hobbies">Hobbies:</label>
-            <textarea id="hobbies" name="hobbies" rows="3" placeholder="" required></textarea>
+            <label for="hobbies" data-key="hobbies">Hobbies:</label>
+            <textarea id="hobbies" name="hobbies" rows="3" required></textarea>
           </div>
         </div>
       </div>
@@ -146,62 +168,62 @@
       <div class="form-section questions">
           <div class="section-header personal-header">
             <span class="section-number">4</span>
-            <div class="section-title">Scouting Questions</div>
+            <div class="section-title" data-key="section4">Scouting Questions</div>
             <div class="person-icon" aria-hidden="true"><img src="Scouting Questions.png" alt="fleur" class="header-icon"></div>
           </div>
 
         <div class="questions-fields">
           <div class="info-row">
-            <label for="q1">Why do you want to join the Rover Team?</label>
+            <label for="q1" data-key="q1">Why do you want to join the Rover Team?</label>
             <textarea id="q1" name="q1" rows="2" required></textarea>
           </div>
 
           <div class="info-row">
-            <label for="q2">What can you contribute to the team?</label>
+            <label for="q2" data-key="q2">What can you contribute to the team?</label>
             <textarea id="q2" name="q2" rows="2" required></textarea>
           </div>
 
           <div class="checkbox-row">
-            <div class="q">Can you commit to meetings, trips and activities?</div>
-            <label><input type="radio" name="commit" value="Yes" required> Yes</label>
-            <label><input type="radio" name="commit" value="Sometimes"> Sometimes</label>
-            <label><input type="radio" name="commit" value="No"> No</label>
+            <div class="q" data-key="commitQ">Can you commit to meetings, trips and activities?</div>
+            <label><input type="radio" name="commit" value="Yes" required> <span data-key="yes">Yes</span></label>
+            <label><input type="radio" name="commit" value="Sometimes"> <span data-key="sometimes">Sometimes</span></label>
+            <label><input type="radio" name="commit" value="No"> <span data-key="no">No</span></label>
           </div>
 
           <div class="info-row">
-            <label for="q4">Any other information you would like to add?</label>
+            <label for="q4" data-key="q4">Any other information you would like to add?</label>
             <textarea id="q4" name="q4" rows="3"></textarea>
           </div>
         </div>
       </div>
     </section>
-    
+
     <!-- Commitment & Agreement -->
     <section class="card form-card">
       <div class="form-section agreement">
         <div class="section-header personal-header">
           <span class="section-number">5</span>
-          <div class="section-title">Commitment &amp; Agreement</div>
+          <div class="section-title" data-key="section5">Commitment &amp; Agreement</div>
             <div class="person-icon" aria-hidden="true"><img src="assets/Commitment & Agreement.png" alt="fleur" class="header-icon"></div>
         </div>
 
-        <div class="agreement-text" style="padding:10px;color:#243a2c;font-weight:600;">
+        <div class="agreement-text" data-key="agreementText" style="padding:10px;color:#243a2c;font-weight:600;">
           I hereby declare that the above information is correct, and I commit to abide by the rules, values and mission of the Rover Team.
         </div>
 
         <div class="agreement-fields" style="padding:12px">
           <div class="info-row">
-            <label for="agreeName">Name:</label>
+            <label for="agreeName" data-key="agreeName">Name:</label>
             <input id="agreeName" name="agreeName" type="text" required>
           </div>
 
           <div class="info-row">
-            <label for="agreeSignature">Signature:</label>
+            <label for="agreeSignature" data-key="agreeSignature">Signature:</label>
             <input id="agreeSignature" name="agreeSignature" type="text" required>
           </div>
 
           <div class="info-row dob-row">
-            <label for="agreeDate">Date:</label>
+            <label for="agreeDate" data-key="agreeDate">Date:</label>
             <div class="dob-inputs">
               <input id="agreeDay" name="agreeDay" maxlength="2" placeholder="DD" class="dob small" required>
               <span class="sep">/</span>
@@ -217,8 +239,8 @@
     <!-- Final submit and message -->
     <div class="form-section actions-row">
       <div class="actions">
-        <button id="submitBtn" type="submit" form="memberForm" class="btn primary">Save Member</button>
-        <div id="loading" class="loading" aria-hidden="true">Saving…</div>
+        <button id="submitBtn" type="submit" form="memberForm" class="btn primary" data-key="submitBtn">Save Member</button>
+        <div id="loading" class="loading" aria-hidden="true" data-key="loading">Saving…</div>
       </div>
     </div>
 

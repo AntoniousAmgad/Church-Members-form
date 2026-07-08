@@ -1,5 +1,166 @@
 const GAS_URL = 'https://test-app-sigma-puce.vercel.app/api/proxy?url=https://script.google.com/macros/s/AKfycby3qCpwPdRkKE1qZir7FcQH7wdWT3sBkOhgZ7CWsmY8hYjyyTcgJ91L6OQkyd9MMgCMSQ/exec';
 
+// ── Translations ──────────────────────────────────────────────────────────────
+const translations = {
+  en: {
+    bannerTitle: 'Rover Team',
+    bannerSub: 'Enrollment Form',
+    tagline: 'Be Prepared .. To Serve God, Church & Country',
+    section1: 'Personal Information',
+    fullName: 'Full Name:',
+    fullNamePh: 'Full Name',
+    dob: 'Date of Birth:',
+    address: 'Address:',
+    phone: 'Phone Number:',
+    email: 'Email:',
+    section2: 'Scout Information',
+    isScoutQ: 'Are you currently a scout member?',
+    yes: 'Yes',
+    no: 'No',
+    rankQ: 'Scout Rank (if any):',
+    novice: 'Novice',
+    scoutRank: 'Scout',
+    tenderfoot: 'Tenderfoot',
+    rover: 'Rover',
+    scoutYears: 'Years of Scouting Experience:',
+    years: 'years',
+    scoutActivities: 'Main Activities you have participated in:',
+    section3: 'Skills & Hobbies',
+    leadership: 'Leadership',
+    firstAid: 'First Aid',
+    camping: 'Camping',
+    cooking: 'Cooking',
+    mapReading: 'Map Reading',
+    handicrafts: 'Handicrafts',
+    photography: 'Photography',
+    other: 'Other:',
+    hobbies: 'Hobbies:',
+    section4: 'Scouting Questions',
+    q1: 'Why do you want to join the Rover Team?',
+    q2: 'What can you contribute to the team?',
+    commitQ: 'Can you commit to meetings, trips and activities?',
+    sometimes: 'Sometimes',
+    q4: 'Any other information you would like to add?',
+    section5: 'Commitment & Agreement',
+    agreementText: 'I hereby declare that the above information is correct, and I commit to abide by the rules, values and mission of the Rover Team.',
+    agreeName: 'Name:',
+    agreeSignature: 'Signature:',
+    agreeDate: 'Date:',
+    submitBtn: 'Save Member',
+    loading: 'Saving…',
+    toggleLang: 'عربي',
+    errFullName: 'Please enter your full name (first and last).',
+    errDob: 'Please enter your date of birth.',
+    errAddress: 'Please enter your address.',
+    errPhone: 'Please enter your phone number.',
+    errEmail: 'Please enter a valid email address.',
+    errScout: 'Please indicate whether you are currently a scout member.',
+    errScoutYears: 'Please enter your years of scouting experience.',
+    errActivities: 'Please enter the main activities you have participated in.',
+    errHobbies: 'Please enter your skills and/or hobbies.',
+    errWhyJoin: 'Please answer why you want to join the Rover Team.',
+    errContribute: 'Please answer what you can contribute to the team.',
+    errCommit: 'Please answer whether you can commit to meetings and activities.',
+    errAgreeName: 'Please enter your name in the agreement section.',
+    errSignature: 'Please enter your signature in the agreement section.',
+    errAgreeDate: 'Please enter the date in the agreement section.',
+    successMsg: 'Member saved successfully.',
+    errorMsg: 'Unable to save member. Please try again later.',
+  },
+  ar: {
+    bannerTitle: 'فريق الجوالة',
+    bannerSub: 'استمارة التسجيل',
+    tagline: 'كن مستعداً .. لخدمة الله والكنيسة والوطن',
+    section1: 'المعلومات الشخصية',
+    fullName: 'الاسم الكامل:',
+    fullNamePh: 'الاسم الكامل',
+    dob: 'تاريخ الميلاد:',
+    address: 'العنوان:',
+    phone: 'رقم الهاتف:',
+    email: 'البريد الإلكتروني:',
+    section2: 'معلومات الكشافة',
+    isScoutQ: 'هل أنت عضو في الكشافة حالياً؟',
+    yes: 'نعم',
+    no: 'لا',
+    rankQ: 'رتبة الكشافة (إن وجدت):',
+    novice: 'مبتدئ',
+    scoutRank: 'كشاف',
+    tenderfoot: 'أول',
+    rover: 'جوال',
+    scoutYears: 'سنوات الخبرة في الكشافة:',
+    years: 'سنوات',
+    scoutActivities: 'الأنشطة الرئيسية التي شاركت فيها:',
+    section3: 'المهارات والهوايات',
+    leadership: 'قيادة',
+    firstAid: 'إسعافات أولية',
+    camping: 'تخييم',
+    cooking: 'طبخ',
+    mapReading: 'قراءة خرائط',
+    handicrafts: 'حرف يدوية',
+    photography: 'تصوير',
+    other: 'أخرى:',
+    hobbies: 'الهوايات:',
+    section4: 'أسئلة الكشافة',
+    q1: 'لماذا تريد الانضمام إلى فريق الجوالة؟',
+    q2: 'ما الذي يمكنك تقديمه للفريق؟',
+    commitQ: 'هل يمكنك الالتزام بالاجتماعات والرحلات والأنشطة؟',
+    sometimes: 'أحياناً',
+    q4: 'هل هناك أي معلومات أخرى تود إضافتها؟',
+    section5: 'الالتزام والاتفاقية',
+    agreementText: 'أُقر بأن المعلومات المذكورة أعلاه صحيحة، وأتعهد بالالتزام بقواعد وقيم ورسالة فريق الجوالة.',
+    agreeName: 'الاسم:',
+    agreeSignature: 'التوقيع:',
+    agreeDate: 'التاريخ:',
+    submitBtn: 'حفظ العضو',
+    loading: 'جارٍ الحفظ…',
+    toggleLang: 'English',
+    errFullName: 'يرجى إدخال الاسم الكامل (الأول والأخير).',
+    errDob: 'يرجى إدخال تاريخ الميلاد.',
+    errAddress: 'يرجى إدخال العنوان.',
+    errPhone: 'يرجى إدخال رقم الهاتف.',
+    errEmail: 'يرجى إدخال بريد إلكتروني صحيح.',
+    errScout: 'يرجى تحديد ما إذا كنت عضواً في الكشافة حالياً.',
+    errScoutYears: 'يرجى إدخال سنوات الخبرة في الكشافة.',
+    errActivities: 'يرجى إدخال الأنشطة الرئيسية التي شاركت فيها.',
+    errHobbies: 'يرجى إدخال مهاراتك و/أو هواياتك.',
+    errWhyJoin: 'يرجى الإجابة عن سبب رغبتك في الانضمام إلى فريق الجوالة.',
+    errContribute: 'يرجى الإجابة عما يمكنك تقديمه للفريق.',
+    errCommit: 'يرجى الإجابة عن مدى قدرتك على الالتزام بالاجتماعات والأنشطة.',
+    errAgreeName: 'يرجى إدخال اسمك في قسم الاتفاقية.',
+    errSignature: 'يرجى إدخال توقيعك في قسم الاتفاقية.',
+    errAgreeDate: 'يرجى إدخال التاريخ في قسم الاتفاقية.',
+    successMsg: 'تم حفظ العضو بنجاح.',
+    errorMsg: 'تعذر حفظ العضو. يرجى المحاولة مرة أخرى لاحقاً.',
+  }
+};
+
+// ── Language toggle ───────────────────────────────────────────────────────────
+let currentLang = 'en';
+
+function applyLanguage(lang) {
+  const t = translations[lang];
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    if(t[key] !== undefined) el.textContent = t[key];
+  });
+
+  document.querySelectorAll('[data-placeholder-key]').forEach(el => {
+    const key = el.getAttribute('data-placeholder-key');
+    if(t[key] !== undefined) el.placeholder = t[key];
+  });
+
+  document.getElementById('langToggle').textContent = t.toggleLang;
+}
+
+document.getElementById('langToggle').addEventListener('click', () => {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  applyLanguage(currentLang);
+});
+
+// ── Form ─────────────────────────────────────────────────────────────────────
 const form = document.getElementById('memberForm');
 const loading = document.getElementById('loading');
 const message = document.getElementById('message');
@@ -26,6 +187,7 @@ function showMessage(text, type='success'){
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   showMessage('');
+  const t = translations[currentLang];
 
   let firstName = '';
   let lastName = '';
@@ -90,66 +252,21 @@ form.addEventListener('submit', async (e) => {
     }
   };
 
-  if(!data.firstName || !data.lastName){
-    showMessage('Please enter your full name (first and last).', 'error');
-    return;
-  }
-  if(!data.birthday){
-    showMessage('Please enter your date of birth.', 'error');
-    return;
-  }
-  if(!data.address){
-    showMessage('Please enter your address.', 'error');
-    return;
-  }
-  if(!data.phone){
-    showMessage('Please enter your phone number.', 'error');
-    return;
-  }
-  if(!data.email || !validateEmail(data.email)){
-    showMessage('Please enter a valid email address.', 'error');
-    return;
-  }
-  if(data.scout.isMember === null){
-    showMessage('Please indicate whether you are currently a scout member.', 'error');
-    return;
-  }
-  if(!data.scout.years && data.scout.years !== 0){
-    showMessage('Please enter your years of scouting experience.', 'error');
-    return;
-  }
-  if(!data.scout.activities){
-    showMessage('Please enter the main activities you have participated in.', 'error');
-    return;
-  }
-  if(!data.hobbies){
-    showMessage('Please enter your skills and/or hobbies.', 'error');
-    return;
-  }
-  if(!data.questions.whyJoin){
-    showMessage('Please answer why you want to join the Rover Team.', 'error');
-    return;
-  }
-  if(!data.questions.contribute){
-    showMessage('Please answer what you can contribute to the team.', 'error');
-    return;
-  }
-  if(!data.questions.canCommit){
-    showMessage('Please answer whether you can commit to meetings and activities.', 'error');
-    return;
-  }
-  if(!data.agreement.name){
-    showMessage('Please enter your name in the agreement section.', 'error');
-    return;
-  }
-  if(!data.agreement.signature){
-    showMessage('Please enter your signature in the agreement section.', 'error');
-    return;
-  }
-  if(!data.agreement.date){
-    showMessage('Please enter the date in the agreement section.', 'error');
-    return;
-  }
+  if(!data.firstName || !data.lastName){ showMessage(t.errFullName, 'error'); return; }
+  if(!data.birthday){ showMessage(t.errDob, 'error'); return; }
+  if(!data.address){ showMessage(t.errAddress, 'error'); return; }
+  if(!data.phone){ showMessage(t.errPhone, 'error'); return; }
+  if(!data.email || !validateEmail(data.email)){ showMessage(t.errEmail, 'error'); return; }
+  if(data.scout.isMember === null){ showMessage(t.errScout, 'error'); return; }
+  if(!data.scout.years && data.scout.years !== 0){ showMessage(t.errScoutYears, 'error'); return; }
+  if(!data.scout.activities){ showMessage(t.errActivities, 'error'); return; }
+  if(!data.hobbies){ showMessage(t.errHobbies, 'error'); return; }
+  if(!data.questions.whyJoin){ showMessage(t.errWhyJoin, 'error'); return; }
+  if(!data.questions.contribute){ showMessage(t.errContribute, 'error'); return; }
+  if(!data.questions.canCommit){ showMessage(t.errCommit, 'error'); return; }
+  if(!data.agreement.name){ showMessage(t.errAgreeName, 'error'); return; }
+  if(!data.agreement.signature){ showMessage(t.errSignature, 'error'); return; }
+  if(!data.agreement.date){ showMessage(t.errAgreeDate, 'error'); return; }
 
   const submitBtn = document.getElementById('submitBtn');
   submitBtn.disabled = true;
@@ -162,20 +279,18 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify(data)
     });
 
-    if(!resp.ok){
-      throw new Error('Network response was not ok');
-    }
+    if(!resp.ok) throw new Error('Network response was not ok');
 
     const result = await resp.json();
     if(result && (result.status === 'success' || result.result === 'success')){
-      showMessage('Member saved successfully.', 'success');
+      showMessage(t.successMsg, 'success');
       form.reset();
     } else {
       throw new Error(result && result.message ? result.message : 'Unknown error from server');
     }
   } catch(err){
     console.error(err);
-    showMessage('Unable to save member. Please try again later.', 'error');
+    showMessage(t.errorMsg, 'error');
   } finally{
     submitBtn.disabled = false;
     showLoading(false);
