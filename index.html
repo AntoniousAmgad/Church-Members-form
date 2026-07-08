@@ -25,16 +25,49 @@
       right: auto;
       left: 16px;
     }
+    /* RTL layout fixes for physical margin/padding values */
+    [dir="rtl"] .personal-header .section-title {
+      margin-left: 0;
+      margin-right: 6px;
+    }
     [dir="rtl"] .personal-header .person-icon {
       margin-left: 0;
       margin-right: auto;
     }
+    [dir="rtl"] .ranks label {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+    [dir="rtl"] .other-skill .inline-input {
+      margin-left: 0;
+      margin-right: 6px;
+    }
+
+    /* RTL icon position */
     [dir="rtl"] .person-icon .header-icon {
       transform: translateX(50px);
     }
+
+    /* RTL mobile fixes */
     @media (max-width: 640px) {
       [dir="rtl"] .person-icon .header-icon {
         transform: translateX(15px);
+      }
+      [dir="rtl"] .checkbox-row {
+        flex-wrap: wrap;
+      }
+      [dir="rtl"] .tagline-text {
+        white-space: normal;
+        text-align: center;
+      }
+      [dir="rtl"] .banner-inner {
+        min-width: 0;
+        width: 100%;
+        padding: 14px 24px;
+      }
+      [dir="rtl"] .questions .checkbox-row {
+        flex-direction: column;
+        align-items: flex-end;
       }
     }
   </style>
