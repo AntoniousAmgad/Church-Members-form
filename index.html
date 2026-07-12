@@ -43,15 +43,19 @@
       margin-right: 6px;
     }
 
-    /* RTL icon position */
+    /* RTL icon position — flip to left edge of header */
     [dir="rtl"] .person-icon .header-icon {
-      transform: translateX(50px);
+      right: auto;
+      left: 8px;
+      transform: none;
     }
 
     /* RTL mobile fixes */
     @media (max-width: 640px) {
       [dir="rtl"] .person-icon .header-icon {
-        transform: translateX(15px);
+        right: auto;
+        left: 8px;
+        transform: none;
       }
       [dir="rtl"] .checkbox-row {
         flex-wrap: wrap;
