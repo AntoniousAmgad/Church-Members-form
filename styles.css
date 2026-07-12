@@ -106,8 +106,10 @@ body{margin:0;background:var(--bg);color:#222;line-height:1.4}
 .questions .checkbox-row label{display:inline-flex;align-items:center;gap:6px}
 
 @media(max-width:640px){
-  .questions .checkbox-row{flex-direction:column;align-items:flex-start}
-  .questions .checkbox-row .q{min-width:0}
+  .questions .checkbox-row,
+  .scout .checkbox-row{flex-direction:column;align-items:flex-start}
+  .questions .checkbox-row .q,
+  .scout .checkbox-row .q{min-width:0}
 }
 
 .actions{display:flex;align-items:center;gap:12px;margin-top:12px}
