@@ -54,7 +54,7 @@
     @media (max-width: 640px) {
       [dir="rtl"] .person-icon .header-icon {
         right: auto;
-        left: 8px;
+        left: 1px;
         transform: none;
       }
       [dir="rtl"] .checkbox-row {
@@ -81,7 +81,7 @@
         text-align: right;
       }
       [dir="rtl"] .ranks {
-        flex-wrap: wrap;
+        flex-wrap: flex;
         justify-content: flex-end;
       }
       [dir="rtl"] .scout .info-row input,
@@ -124,7 +124,17 @@
             <span class="section-number">1</span>
             <div class="section-title" data-key="section1">Personal Information</div>
             <div class="person-icon" aria-hidden="true">
-              <img src="Personal Information.png" alt="personal icon" class="header-icon personal-flower">
+              <svg class="header-icon" viewBox="0 0 75 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Person head -->
+                <circle cx="37" cy="16" r="11" fill="#1f5a3a"/>
+                <circle cx="34" cy="13" r="4" fill="white" opacity="0.18"/>
+                <!-- Person shoulders/body -->
+                <path d="M15 50 Q16 35 37 35 Q58 35 59 50Z" fill="#1f5a3a"/>
+                <!-- Gold 5-pt star accent -->
+                <path d="M65 4 L66.5 8.5 L71 8.5 L67.5 11.3 L68.8 15.8 L65 13 L61.2 15.8 L62.5 11.3 L59 8.5 L63.5 8.5 Z" fill="#caa94b"/>
+                <!-- Small gold dot -->
+                <circle cx="11" cy="34" r="2" fill="#caa94b" opacity="0.45"/>
+              </svg>
             </div>
           </div>
 
@@ -167,7 +177,21 @@
             <span class="section-number">2</span>
             <div class="section-title" data-key="section2">Scout Information</div>
             <div class="person-icon" aria-hidden="true">
-              <img src="assets/ChatGPT%20Image%20Jun%206%2C%202026%2C%2001_27_23%20PM.png" alt="scout flower" class="header-icon scout-flower">
+              <svg class="header-icon" viewBox="0 0 75 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Centre top petal -->
+                <path d="M37 3 C33 9 30 16 31 22 Q34 27 37 27 Q40 27 43 22 C44 16 41 9 37 3Z" fill="#1f5a3a"/>
+                <!-- Left petal -->
+                <path d="M37 27 Q31 24 21 22 Q14 22 14 27 Q15 32 22 32 Q31 32 37 27Z" fill="#2f7a52"/>
+                <!-- Right petal -->
+                <path d="M37 27 Q43 24 53 22 Q60 22 60 27 Q59 32 52 32 Q43 32 37 27Z" fill="#2f7a52"/>
+                <!-- Collar band -->
+                <path d="M30 34 Q37 37 44 34 L44 39 Q37 42 30 39Z" fill="#1f5a3a"/>
+                <!-- Base point -->
+                <path d="M33 39 L37 48 L41 39Z" fill="#1f5a3a"/>
+                <!-- Gold centre -->
+                <circle cx="37" cy="27" r="5" fill="#caa94b"/>
+                <circle cx="37" cy="27" r="2.5" fill="#f1efe8"/>
+              </svg>
             </div>
           </div>
 
@@ -204,7 +228,16 @@
           <div class="section-header personal-header">
             <span class="section-number">3</span>
             <div class="section-title" data-key="section3">Skills &amp; Hobbies</div>
-            <div class="person-icon" aria-hidden="true"><img src="Skills & Hobbies.png" alt="fleur" class="header-icon"></div>
+            <div class="person-icon" aria-hidden="true">
+              <svg class="header-icon" viewBox="0 0 75 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- 5-pointed star (outer R=20, inner r=8, centre 37,26) -->
+                <path d="M37,6 L42,20 L56,20 L45,28 L49,42 L37,34 L25,42 L29,28 L18,20 L32,20 Z" fill="#1f5a3a" opacity="0.13" transform="translate(2,2)"/>
+                <path d="M37,6 L42,20 L56,20 L45,28 L49,42 L37,34 L25,42 L29,28 L18,20 L32,20 Z" fill="#1f5a3a"/>
+                <!-- Inner highlight + gold centre -->
+                <circle cx="37" cy="26" r="6" fill="#f1efe8"/>
+                <circle cx="37" cy="26" r="3.5" fill="#caa94b"/>
+              </svg>
+            </div>
           </div>
 
         <div class="skills-fields">
@@ -233,7 +266,25 @@
           <div class="section-header personal-header">
             <span class="section-number">4</span>
             <div class="section-title" data-key="section4">Scouting Questions</div>
-            <div class="person-icon" aria-hidden="true"><img src="Scouting Questions.png" alt="fleur" class="header-icon"></div>
+            <div class="person-icon" aria-hidden="true">
+              <svg class="header-icon" viewBox="0 0 75 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Compass ring -->
+                <circle cx="37" cy="25" r="21" fill="#1f5a3a" opacity="0.07"/>
+                <circle cx="37" cy="25" r="21" stroke="#1f5a3a" stroke-width="1.5" fill="none"/>
+                <circle cx="37" cy="25" r="13" stroke="#1f5a3a" stroke-width="0.8" stroke-dasharray="2 3" fill="none" opacity="0.35"/>
+                <!-- N needle (dark green, points up) -->
+                <path d="M37 4 L41 22 L37 19 L33 22 Z" fill="#1f5a3a"/>
+                <!-- S needle (gold, points down) -->
+                <path d="M37 46 L41 28 L37 31 L33 28 Z" fill="#caa94b"/>
+                <!-- E needle -->
+                <path d="M58 25 L40 21 L43 25 L40 29 Z" fill="#1f5a3a"/>
+                <!-- W needle -->
+                <path d="M16 25 L34 21 L31 25 L34 29 Z" fill="#1f5a3a"/>
+                <!-- Centre -->
+                <circle cx="37" cy="25" r="3.5" fill="#1f5a3a"/>
+                <circle cx="37" cy="25" r="1.8" fill="#caa94b"/>
+              </svg>
+            </div>
           </div>
 
         <div class="questions-fields">
@@ -268,7 +319,20 @@
         <div class="section-header personal-header">
           <span class="section-number">5</span>
           <div class="section-title" data-key="section5">Commitment &amp; Agreement</div>
-            <div class="person-icon" aria-hidden="true"><img src="assets/Commitment & Agreement.png" alt="fleur" class="header-icon"></div>
+            <div class="person-icon" aria-hidden="true">
+              <svg class="header-icon" viewBox="0 0 75 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Shield -->
+                <path d="M37 4 L58 12 L58 30 C58 41 37 49 37 49 C37 49 16 41 16 30 L16 12 Z" fill="#1f5a3a"/>
+                <!-- Inner shield -->
+                <path d="M37 8 L54 15 L54 30 C54 39 37 46 37 46 C37 46 20 39 20 30 L20 15 Z" fill="#2f7a52"/>
+                <!-- Cross vertical -->
+                <rect x="33.5" y="17" width="7" height="21" rx="1.5" fill="#f1efe8" opacity="0.95"/>
+                <!-- Cross horizontal -->
+                <rect x="25" y="23.5" width="24" height="7" rx="1.5" fill="#f1efe8" opacity="0.95"/>
+                <!-- Gold centre of cross -->
+                <circle cx="37" cy="27" r="4" fill="#caa94b"/>
+              </svg>
+            </div>
         </div>
 
         <div class="agreement-text" data-key="agreementText" style="padding:10px;color:#243a2c;font-weight:600;">
