@@ -1,4 +1,4 @@
-const GAS_URL = 'https://test-app-sigma-puce.vercel.app/api/proxy?url=https://script.google.com/macros/s/AKfycby3qCpwPdRkKE1qZir7FcQH7wdWT3sBkOhgZ7CWsmY8hYjyyTcgJ91L6OQkyd9MMgCMSQ/exec';
+const GAS_URL = '/api/proxy?url=https://script.google.com/macros/s/AKfycby3qCpwPdRkKE1qZir7FcQH7wdWT3sBkOhgZ7CWsmY8hYjyyTcgJ91L6OQkyd9MMgCMSQ/exec';
 
 // ── Translations ──────────────────────────────────────────────────────────────
 const translations = {

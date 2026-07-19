@@ -1,5 +1,4 @@
-export default async function handler(req, res) {
-  // Allow CORS
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -8,37 +7,32 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const target = 'https://script.google.com';
+  const targetUrl = req.query && req.query.url;
+  if (!targetUrl) {
+    return res.status(400).json({ error: 'Missing url query parameter' });
+  }
+
+  let body;
+  if (req.body !== undefined) {
+    body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
+  }
+
   try {
-    // Forward only the path after /api/proxy
-    const path = req.url.replace(/^\/api\/proxy/, '');
-    const targetUrl = target + path;
-
-    // Get the body as raw data
-    let body;
-    if (req.method === 'GET' || req.method === 'HEAD') {
-      body = undefined;
-    } else if (typeof req.body === 'string') {
-      body = req.body;
-    } else if (req.body) {
-      body = JSON.stringify(req.body);
-    }
-
-    const fetchOptions = {
+    const upstreamResponse = await fetch(targetUrl, {
       method: req.method,
       headers: {
-        'Content-Type': req.headers['content-type'] || 'application/x-www-form-urlencoded'
+        'Content-Type': req.headers['content-type'] || 'application/json',
+        ...(req.headers.authorization ? { Authorization: req.headers.authorization } : {})
       },
-      body: body
-    };
+      body,
+    });
 
-    const r = await fetch(targetUrl, fetchOptions);
-    const text = await r.text();
-
-    // Mirror status and body
-    res.status(r.status).send(text);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Proxy error' });
+    const responseText = await upstreamResponse.text();
+    res.status(upstreamResponse.status);
+    res.setHeader('Content-Type', upstreamResponse.headers.get('content-type') || 'application/json');
+    res.send(responseText);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Proxy request failed' });
   }
-}
+};
