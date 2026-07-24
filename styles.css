@@ -18,7 +18,7 @@ body{margin:0;background:var(--bg);color:#222;line-height:1.4}
 
 /* Top page image above the banner */
 .top-image-wrap{display:flex;justify-content:center;margin-bottom:18px}
-.top-page-image{width:100%;max-width:920px;height:auto;border-radius:18px;border:2px solid #1f5a3a;box-shadow:0 10px 30px rgba(0,0,0,0.16)}
+.top-page-image{width:100%;max-width:400px;height:auto;border-radius:18px;border:2px solid #1f5a3a;box-shadow:0 10px 30px rgba(0,0,0,0.16)}
 
 /* Top banner similar to the reference design */
 .top-banner{background:linear-gradient(180deg,#f6f3ec,#f3efe6);padding:18px;border-radius:14px;margin-bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,0.06)}
